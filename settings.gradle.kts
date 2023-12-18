@@ -1,2 +1,1 @@
-rootProject.name = "chess-system-java"
-
+rootProject.name = "chess-system"
