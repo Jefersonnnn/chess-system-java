@@ -1,6 +1,8 @@
 package org.jm.chess;
 
 import org.jm.boardgame.Board;
+import org.jm.boardgame.Piece;
+import org.jm.boardgame.Position;
 import org.jm.chess.pieces.King;
 import org.jm.chess.pieces.Rook;
 
@@ -21,6 +23,27 @@ public class ChessMatch {
             }
         }
         return mat;
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturePiece = makeMove(source, target);
+        return (ChessPiece) capturePiece;
+    }
+
+    private Piece makeMove(Position source, Position target){
+        Piece p = board.removePiece(source);
+        Piece capturePiece = board.removePiece(target);
+        board.placePiece(p, target);
+        return capturePiece;
+    }
+
+    private void validateSourcePosition(Position position){
+        if (!board.thereIsAPiece(position)){
+            throw new ChessException("There is no piece on source position");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece){
