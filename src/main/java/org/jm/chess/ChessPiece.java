@@ -2,9 +2,10 @@ package org.jm.chess;
 
 import org.jm.boardgame.Board;
 import org.jm.boardgame.Piece;
+import org.jm.boardgame.Position;
 
 public abstract class ChessPiece extends Piece {
-    private Color color;
+    private final Color color;
 
     public ChessPiece(Board board, Color color) {
         super(board);
@@ -13,6 +14,11 @@ public abstract class ChessPiece extends Piece {
 
     public Color getColor() {
         return color;
+    }
+
+    protected boolean isThereOpponentPiece(Position position){
+        ChessPiece p = (ChessPiece) getBoard().piece(position);
+        return p != null && p.getColor() != color;
     }
 
 }
