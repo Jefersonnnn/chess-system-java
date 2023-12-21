@@ -2,6 +2,7 @@ package org.jm.chess.pieces;
 
 import org.jm.boardgame.Board;
 import org.jm.boardgame.Position;
+import org.jm.chess.ChessMatch;
 import org.jm.chess.ChessPiece;
 import org.jm.chess.Color;
 
